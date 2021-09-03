@@ -1,0 +1,43 @@
+﻿@page "/"
+@using System.Net.Http
+@inject IHttpClientFactory HttpClientFactory
+
+
+	<div class="main">
+
+		<div class="card-deck">
+			<button class="btn btn-success" @onclick="@(async()=> await GetOrder())">Get Order</button>
+				<ul>
+					<li>Food: @foodItem</li>
+					<li>Drink: @drinkItem</li>
+				</ul>
+		</div>
+	</div>
+
+
+
+
+@code {
+
+	string foodItem = string.Empty;
+	string drinkItem = string.Empty;
+	HttpClient foodClient;
+	HttpClient drinkClient;
+	protected override void OnInitialized()
+	{
+		foodClient = HttpClientFactory.CreateClient("FoodService");
+		drinkClient = HttpClientFactory.CreateClient("DrinkService");
+	}
+
+	async Task GetOrder()
+	{
+		foodItem = await foodClient.GetStringAsync("food");
+		drinkItem = await drinkClient.GetStringAsync("drink");
+		Console.WriteLine($"Food: {foodItem} and drink: {drinkItem}");
+		await InvokeAsync(StateHasChanged);
+	}
+
+
+
+
+}
