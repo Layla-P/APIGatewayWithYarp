@@ -13,7 +13,7 @@ namespace HouseService.Controllers
 	{
 		private static readonly string[] Food = new[]
 		{
-			"Fish Taco", "Meat Taco", "Tofu Taco", "Chips and Dip", "french fries", "Taco salad", "Pico de Gallo"
+			"Fish Taco", "Meat Taco", "Tofu Taco", "Chips and Dip", "French fries", "Taco salad", "Pico de Gallo"
 		};
 
 		private readonly ILogger<FoodController> _logger;
