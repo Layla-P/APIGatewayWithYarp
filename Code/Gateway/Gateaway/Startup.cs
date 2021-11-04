@@ -4,9 +4,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace DrinkService
+
+namespace Gateaway
 {
-    public class Startup
+	public class Startup
 	{
 		public Startup(IConfiguration configuration)
 		{
@@ -18,17 +19,11 @@ namespace DrinkService
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			services.AddCors(options =>
-			{
-				options.AddDefaultPolicy(
-								  builder =>
-								  {
-									  builder.WithOrigins("https://localhost:44312")
-									   .AllowAnyMethod()
-									   .AllowAnyHeader();
-								  });
-			});
-			services.AddControllers();
+
+			var proxyBuilder = services.AddReverseProxy();
+			// Initialize the reverse proxy from the "ReverseProxy" section of configuration
+			proxyBuilder.LoadFromConfig(Configuration.GetSection("ReverseProxy"));
+
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,17 +34,12 @@ namespace DrinkService
 				app.UseDeveloperExceptionPage();
 			}
 
-			app.UseHttpsRedirection();
-
 			app.UseRouting();
-
-			app.UseCors();
-
-			app.UseAuthorization();
 
 			app.UseEndpoints(endpoints =>
 			{
-				endpoints.MapControllers();
+				endpoints.MapReverseProxy();
+
 			});
 		}
 	}

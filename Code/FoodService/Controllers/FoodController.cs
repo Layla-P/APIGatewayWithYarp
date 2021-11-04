@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HouseService.Controllers
+namespace FoodService.Controllers
 {
 	[ApiController]
 	[Route("[controller]")]

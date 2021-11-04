@@ -14,12 +14,12 @@ namespace Client
 
 			builder.Services.AddHttpClient("FoodService", client =>
 			{
-				client.BaseAddress = new Uri("https://localhost:44378/");
+				client.BaseAddress = new Uri("https://localhost:44300/foodservice/");
 			});
 
 			builder.Services.AddHttpClient("DrinkService", client =>
 			{
-				client.BaseAddress = new Uri("https://localhost:44366/");
+				client.BaseAddress = new Uri("https://localhost:44300/drinkservice/");
 			});
 			await builder.Build().RunAsync();
 		}
