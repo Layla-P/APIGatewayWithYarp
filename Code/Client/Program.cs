@@ -1,27 +1,20 @@
+using Client;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Threading.Tasks;
 
-namespace Client
+var builder = WebAssemblyHostBuilder.CreateDefault(args);
+builder.RootComponents.Add<App>("#app");
+builder.RootComponents.Add<HeadOutlet>("head::after");
+
+builder.Services.AddHttpClient("FoodService", client =>
 {
-	public class Program
-	{
-		public static async Task Main(string[] args)
-		{
-			var builder = WebAssemblyHostBuilder.CreateDefault(args);
-			builder.RootComponents.Add<App>("#app");
+	client.BaseAddress = new Uri("https://localhost:5011/");
+});
 
-			builder.Services.AddHttpClient("FoodService", client =>
-			{
-				client.BaseAddress = new Uri("https://localhost:44300/foodservice/");
-			});
+builder.Services.AddHttpClient("DrinkService", client =>
+{
+	client.BaseAddress = new Uri("https://localhost:5021/");
+});
 
-			builder.Services.AddHttpClient("DrinkService", client =>
-			{
-				client.BaseAddress = new Uri("https://localhost:44300/drinkservice/");
-			});
-			await builder.Build().RunAsync();
-		}
-	}
-}
+
+await builder.Build().RunAsync();
