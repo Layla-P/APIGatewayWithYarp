@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DrinkService", "DrinkServic
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{9054E1EC-5BEB-407F-AD72-C8CF74AD69F7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gateway", "Gateway\Gateway\Gateway.csproj", "{15DD1C9E-A137-4F61-A0C0-7B42E3191B26}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gateway", "Gateway\Gateway.csproj", "{15DD1C9E-A137-4F61-A0C0-7B42E3191B26}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{CBB622F2-C929-46D8-827B-0B4282A508A7}"
 EndProject
